@@ -1,10 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const jsonDriveID = "ID_DO_ARQUIVO_JSON"; // Substitua pelo ID real
-
-    fetch(`https://drive.google.com/uc?export=download&id=${jsonDriveID}`)
-        .then(response => response.json())
-        .then(produtos => carregarProdutos(produtos))
-        .catch(error => console.error("Erro ao carregar os produtos:", error));
+    carregarProdutos(produtos);
 });
 
 function carregarProdutos(produtos) {
@@ -18,7 +13,7 @@ function carregarProdutos(produtos) {
         divProduto.classList.add("produto");
 
         const img = document.createElement("img");
-        img.src = `https://drive.google.com/file/d/1218DFOvc8RSgw-aymiCoYDVWh-3RoSwu/view?usp=drivesdk`;
+        img.src = `https://drive.google.com/uc?export=view&id=${produto.imagem}`;
         img.alt = produto.nome;
         img.onload = () => container.appendChild(divProduto);
         img.onerror = () => console.warn(`Imagem não carregada: ${produto.nome}`);
